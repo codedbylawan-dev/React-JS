@@ -17,12 +17,22 @@
       //   Write Your Code Here
       const Welcome = (props) => {
         console.log(props);
-        return <h1 className="message">Hello, User</h1>;
+        const { name, greeting } = props;
+        return (
+          <h1 className="message">
+            {greeting}, {name}
+          </h1>
+        );
       };
-      ReactDOM.render(
-        <Welcome name="Rahul" greeting="Hello" />,
-        document.getElementById("root")
+
+      const Greetings = () => (
+        <div>
+          <Welcome name="Rahul" greeting="Hello" />
+          <Welcome name="Ram" greeting="Hi" />
+        </div>
       );
+
+      ReactDOM.render(<Greetings />, document.getElementById("root"));
     </script>
   </body>
 </html>
