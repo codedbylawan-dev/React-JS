@@ -6,15 +6,17 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./index.css" />
+    <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
   </head>
   <body>
     <div id="root"></div>
     <script type="text/javascript">
-      const rootElement = document.getElementById("root");
-      const element = document.createElement("h1");
-      element.textContent = "Hello World!";
-      element.classList.add("greeting");
-      rootElement.appendChild(element);
+      const elementProps = { className: "greeting", children: "Hello World!" };
+      const elementType = "h1";
+      const element = React.createElement(elementType, elementProps);
+      ReactDOM.render(element, document.getElementById("root"));
     </script>
   </body>
 </html>
