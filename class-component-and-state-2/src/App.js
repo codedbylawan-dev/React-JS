@@ -1,9 +1,8 @@
 import {Component} from 'react'
 import UserProfile from './components/UserProfile'
-
 import './App.css'
 
-const userDetailsList = [
+const initialUserDetailsList = [
   {
     uniqueNo: 1,
     imageUrl: 'https://assets.ccbp.in/frontend/react-js/esther-howard-img.png',
@@ -31,13 +30,45 @@ const userDetailsList = [
 ]
 
 class App extends Component {
+  state = {
+    searchInput: '',
+    usersDetailsList: initialUserDetailsList,
+  }
+
+  onChangeSearchInput = event => {
+    this.setState({searchInput: event.target.value})
+  }
+
+  deleteUser = uniqueNo => {
+    const {usersDetailsList} = this.state
+    const filteredUsersData = usersDetailsList.filter(
+      each => each.uniqueNo !== uniqueNo,
+    )
+    this.setState({usersDetailsList: filteredUsersData})
+  }
+
   render() {
+    const {searchInput, usersDetailsList} = this.state
+    const searchResults = usersDetailsList.filter(eachUser =>
+      eachUser.name.toLowerCase().includes(searchInput.toLowerCase()),
+    )
+
     return (
       <div className="app-container">
         <h1 className="title">Users List</h1>
+        <input
+          type="search"
+          onChange={this.onChangeSearchInput}
+          value={searchInput}
+          placeholder="Search by name..."
+        />
         <ul className="list-container">
-          {userDetailsList.map(eachUser => (
-            <UserProfile userDetails={eachUser} key={eachUser.uniqueNo} />
+          {searchResults.map(eachUser => (
+            <UserProfile
+              userDetails={eachUser}
+              key={eachUser.uniqueNo}
+              deleteUser={this.deleteUser}
+            />
           ))}
         </ul>
       </div>
