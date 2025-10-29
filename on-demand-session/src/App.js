@@ -38,6 +38,13 @@ const projectsList = [
       'A website that gives you a basic understanding of Advanced Technologies.',
   },
   {
+    projectId: 3,
+    category: 'STATIC',
+    imageURL: 'https://assets.ccbp.in/frontend/react-js/projects-s2-img.png',
+    title: 'Happy Meals',
+    description: 'Discover the best foods in over 1,000 restaurants.',
+  },
+  {
     projectId: 4,
     category: 'RESPONSIVE',
     imageURL: 'https://assets.ccbp.in/frontend/react-js/projects-r4-img.png',
@@ -60,7 +67,14 @@ const projectsList = [
     description:
       'A portfolio is the best alternative for a resume to showcase your skills to the digital world.',
   },
-
+  {
+    projectId: 7,
+    category: 'RESPONSIVE',
+    imageURL: 'https://assets.ccbp.in/frontend/react-js/projects-r1-img.png',
+    title: 'Design',
+    description:
+      'A website to showcase the best features and give more information about the Design tool.',
+  },
   {
     projectId: 8,
     category: 'DYNAMIC',
@@ -88,7 +102,25 @@ const projectsList = [
 ]
 
 class App extends Component {
+  state = {
+    activeTabId: tabsList[0].tabId,
+  }
+
+  clickTabItem = tabValue => {
+    this.setState({activeTabId: tabValue})
+  }
+
+  getFilteredProjects = () => {
+    const {activeTabId} = this.state
+    const filteredProjects = projectsList.filter(
+      eachprojectDetails => eachprojectDetails.category === activeTabId,
+    )
+    return filteredProjects
+  }
+
   render() {
+    const {activeTabId} = this.state
+    const filteredProjects = this.getFilteredProjects()
     return (
       <div className="app-container">
         <Header />
@@ -101,12 +133,17 @@ class App extends Component {
 
         <ul className="tabs-container">
           {tabsList.map(tabDetails => (
-            <TabItem key={tabDetails.tabId} tabDetails={tabDetails} />
+            <TabItem
+              key={tabDetails.tabId}
+              tabDetails={tabDetails}
+              clickTabItem={this.clickTabItem}
+              isActive={activeTabId === tabDetails.tabId}
+            />
           ))}
         </ul>
 
         <ul className="project-list-container">
-          {projectsList.map(projectDetails => (
+          {filteredProjects.map(projectDetails => (
             <ProjectItem
               key={projectDetails.projectId}
               projectDetails={projectDetails}

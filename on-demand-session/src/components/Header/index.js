@@ -8,21 +8,21 @@ const Header = () => (
         <li>
           <img
             className="social-network-img"
-            src="https://assets.ccbp.in/frontend/react-js/projects-linkedin-img.png"
+            src="https://image.flaticon.com/icons/png/512/174/174857.png"
             alt="Linked In"
           />
         </li>
         <li>
           <img
             className="social-network-img"
-            src="https://assets.ccbp.in/frontend/react-js/projects-github-img.png"
+            src="https://image.flaticon.com/icons/png/512/25/25231.png"
             alt="Git Hub"
           />
         </li>
         <li>
           <img
             className="social-network-img"
-            src="https://assets.ccbp.in/frontend/react-js/projects-twitter-img.png"
+            src="https://res.cloudinary.com/dmwrugc6z/image/upload/v1621681890/Background_4x_1_bzyjew.png"
             alt="Twitter"
           />
         </li>

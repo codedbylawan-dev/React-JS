@@ -9,7 +9,7 @@ const ProjectItem = props => {
         <img
           className="project-item-image"
           src={imageURL}
-          alt={`project-item ${projectId}`}
+          alt={`project-item${projectId}`}
         />
         <div className="project-item-details-container">
           <h1 className="project-item-title">{title}</h1>
